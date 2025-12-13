@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  @apply bg-black text-white;
+}
+
+.code-font {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.glass {
+  @apply bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.03)
+  );
+}
+
+.glass-strong {
+  @apply bg-white/20 backdrop-blur-2xl border border-white/30 shadow-2xl;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.05)
+  );
+}
+
+.glass-ultra {
+  @apply bg-white/10 backdrop-blur-3xl border border-white/40 shadow-2xl;
+  background:
+    radial-gradient(
+      120% 120% at 10% 10%,
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.03)
+    );
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.12);
+}
