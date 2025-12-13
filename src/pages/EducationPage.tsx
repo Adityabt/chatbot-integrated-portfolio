@@ -1,30 +1,40 @@
 import { EDUCATION } from "../constant/index.ts";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const container = (delay = 0) => ({
+const container = (delay = 0): Variants => ({
   hidden: { opacity: 0, y: -60 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { delay, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+    transition: {
+      delay,
+      duration: 0.6,
+    },
   },
 });
 
-const itemLeft = (delay = 0) => ({
+const itemLeft = (delay = 0): Variants => ({
   hidden: { opacity: 0, x: -80 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { delay, duration: 0.7 },
+    transition: {
+      delay,
+      duration: 0.7,
+    },
   },
 });
 
-const itemRight = (delay = 0) => ({
+const itemRight = (delay = 0): Variants => ({
   hidden: { opacity: 0, x: 80 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { delay, duration: 0.7 },
+    transition: {
+      delay,
+      duration: 0.7,
+    },
   },
 });
 
