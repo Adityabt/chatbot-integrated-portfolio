@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
           "
         >
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="www.linkedin.com/in/aditya-thakur-4086bb2a7"
             target="_blank"
             rel="noopener noreferrer"
             className="outline outline-2 outline-gray-500/60 rounded text-xl text-neutral-300 hover:text-blue-500 glass-ultra glass-hover"
