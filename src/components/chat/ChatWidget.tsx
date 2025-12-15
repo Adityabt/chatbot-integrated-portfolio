@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion"; // Added AnimatePresence for smooth exit
+import { motion, AnimatePresence } from "framer-motion";
 import MessageBubble from "./MessageBubble";
 
 type ChatMessage = {
@@ -15,12 +15,10 @@ const ChatWidget: React.FC = () => {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // Preloaded message when widget opens for the first time
   const handleToggle = () => {
     if (!open && messages.length === 0) {
       setMessages([
@@ -53,19 +51,13 @@ const ChatWidget: React.FC = () => {
 
       setMessages((prev) => [
         ...prev,
-        {
-          role: "assistant",
-          text: data.reply ?? "⚠️ Something went wrong.",
-        },
+        { role: "assistant", text: data.reply ?? "⚠️ Something went wrong." },
       ]);
-    } catch (error) {
+    } catch {
       setIsTyping(false);
       setMessages((prev) => [
         ...prev,
-        {
-          role: "assistant",
-          text: "⚠️ Server error. Please try again later.",
-        },
+        { role: "assistant", text: "⚠️ Server error. Please try again later." },
       ]);
     }
   };
@@ -74,116 +66,118 @@ const ChatWidget: React.FC = () => {
     <>
       <motion.button
         initial={{ scale: 0 }}
-        animate={{ 
-          scale: 1, 
-          rotate: open ? 360 : 0 
-        }}
-        // 👇 2. Smooth transition settings for the spin
-        transition={{ 
-          type: "spring", 
-          stiffness: 260, 
-          damping: 20 
-        }}
+        animate={{ scale: 1, rotate: open ? 360 : 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
         onClick={handleToggle}
-        className="fixed bottom-16 right-9 w-16 h-16 rounded-2xl
-                   bg-gradient-to-br from-red-600 to-yellow-400
-                   shadow-[0_0_25px_rgba(255,120,0,0.7)]
-                   hover:shadow-[glass-strong]
-                   text-black font-bold
-                   flex items-center justify-center z-50 glass-strong"
+        className="
+          fixed bottom-6 right-5 md:bottom-16 md:right-9
+          w-14 h-14 md:w-16 md:h-16
+          rounded-2xl bg-gradient-to-br from-red-600 to-yellow-400
+          shadow-[0_0_25px_rgba(255,120,0,0.7)]
+          flex items-center justify-center z-50 glass-strong
+        "
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
         {open ? (
-          // 👇 3. THE RED-YELLOW GRADIENT X
           <span
             style={{
               background: "linear-gradient(135deg, #FF0000 0%, #FFD700 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              color: "transparent",
-              fontWeight: "900", // Extra bold
-              fontSize: "1.5rem",
-              lineHeight: "1",
+              fontWeight: "900",
+              fontSize: "1.4rem",
             }}
           >
             ✕
           </span>
         ) : (
-          <span className="text-2xl">✨</span>
+          <span className="text-xl">✨</span>
         )}
       </motion.button>
 
-      {/* Chat Panel */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 50, scale: 0.9, transition: { duration: 0.2 } }}
-            className="fixed bottom-36 right-9 w-80 sm:w-96 h-[480px]
-                       glass-ultra rounded-3xl shadow-xl p-4 flex flex-col z-50
-                       bg-black/80 backdrop-blur-xl border border-white/10" // Added explicit bg for readability
-          >
-            <h3 className="text-xl font-semibold text-yellow-400 mb-3">
-              ⚡ Portfolio Assistant
-            </h3>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+              onClick={handleToggle}
+            />
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto pr-2 space-y-2 custom-scrollbar">
-              {messages.map((m, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <MessageBubble role={m.role} text={m.text} />
-                </motion.div>
-              ))}
+            <motion.div
+              initial={{ y: 80, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 80, opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="
+                fixed z-50
+                bottom-0 md:bottom-36
+                left-0 md:left-auto
+                right-0 md:right-9
+                w-full md:w-96
+                h-[85vh] md:h-[480px]
+                glass-ultra rounded-t-3xl md:rounded-3xl
+                p-4 flex flex-col
+                bg-black/85 backdrop-blur-xl border border-white/10
+              "
+            >
+              <h3 className="text-lg md:text-xl font-semibold text-yellow-400 mb-3">
+                ⚡ Portfolio Assistant
+              </h3>
 
-              {/* Typing Indicator */}
-              {isTyping && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex gap-2 items-center p-2 text-yellow-300"
-                >
-                  <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></span>
-                    <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-150"></span>
-                    <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-300"></span>
+              <div className="flex-1 overflow-y-auto pr-2 space-y-2 custom-scrollbar">
+                {messages.map((m, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <MessageBubble role={m.role} text={m.text} />
+                  </motion.div>
+                ))}
+
+                {isTyping && (
+                  <div className="flex gap-2 items-center p-2 text-yellow-300">
+                    <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce" />
+                    <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-150" />
+                    <span className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce delay-300" />
+                    <span className="text-sm opacity-70 ml-2">Typing…</span>
                   </div>
-                  <span className="text-sm opacity-70">Typing...</span>
-                </motion.div>
-              )}
+                )}
 
-              <div ref={messagesEndRef} />
-            </div>
+                <div ref={messagesEndRef} />
+              </div>
 
-            {/* Input */}
-            <div className="mt-3 flex gap-2">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                placeholder="Ask me anything..."
-                className="flex-1 rounded-xl bg-black/40 border border-white/20 
-                           px-4 py-2 text-sm text-neutral-100 focus:outline-none 
-                           focus:ring-2 focus:ring-red-500 glass-ultra"
-              />
+              <div className="mt-3 flex gap-2">
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                  placeholder="Ask me anything..."
+                  className="
+                    flex-1 rounded-xl bg-black/40 border border-white/20
+                    px-4 py-2 text-sm text-neutral-100 focus:outline-none
+                    focus:ring-2 focus:ring-red-500 glass-ultra
+                  "
+                />
 
-              <button
-                onClick={sendMessage}
-                className="px-4 py-2 rounded-xl bg-gradient-to-br 
-                           from-red-600 to-yellow-400 text-black font-semibold
-                           shadow-[0_0_10px_rgba(255,120,0,0.6)] hover:scale-105
-                           transition"
-              >
-                ➤
-              </button>
-            </div>
-          </motion.div>
+                <button
+                  onClick={sendMessage}
+                  className="
+                    px-4 py-2 rounded-xl bg-gradient-to-br
+                    from-red-600 to-yellow-400 text-black font-semibold
+                    shadow-[0_0_10px_rgba(255,120,0,0.6)]
+                    transition active:scale-95
+                  "
+                >
+                  ➤
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
