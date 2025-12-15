@@ -42,7 +42,7 @@ const ChatWidget: React.FC = () => {
     setIsTyping(true);
 
     try {
-      const res = await fetch("http://localhost:5000/chat", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: newMessage.text }),
@@ -72,10 +72,8 @@ const ChatWidget: React.FC = () => {
 
   return (
     <>
-      {/* Floating Button */}
       <motion.button
         initial={{ scale: 0 }}
-        // 👇 1. THIS CONTROLS THE 360 ROTATION BASED ON STATE
         animate={{ 
           scale: 1, 
           rotate: open ? 360 : 0 
