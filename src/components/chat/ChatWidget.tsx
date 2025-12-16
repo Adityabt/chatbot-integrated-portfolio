@@ -113,16 +113,15 @@ const ChatWidget: React.FC = () => {
               exit={{ y: 80, opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25 }}
               className="
-                fixed z-50
-                bottom-0 md:bottom-36
-                left-0 md:left-auto
-                right-0 md:right-9
-                w-full md:w-96
-                h-[85vh] md:h-[480px]
-                glass-ultra rounded-t-3xl md:rounded-3xl
-                p-4 flex flex-col
-                bg-black/85 backdrop-blur-xl border border-white/10
-              "
+    fixed z-50
+    bottom-24 md:bottom-36
+    left-4 right-4 md:left-auto md:right-9
+    w-auto md:w-96
+    h-[420px] md:h-[480px]
+    glass-ultra rounded-3xl
+    p-4 flex flex-col
+    bg-black/85 backdrop-blur-xl border border-white/10
+  "
             >
               <h3 className="text-lg md:text-xl font-semibold text-yellow-400 mb-3">
                 ⚡ Portfolio Assistant

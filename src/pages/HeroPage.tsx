@@ -14,9 +14,9 @@ const container = (delay: number) => ({
 
 const Hero: React.FC = () => {
   return (
-    <section className="px-6 py-20 mt-10">
-      <div className="glass-ultra glass-hover rounded-3xl px-16 py-20 max-w-9xl mx-auto">
-        <div className="flex flex-col-reverse lg:flex-row items-center gap-20">
+    <section className="px-4 sm:px-6 py-16 sm:py-20 mt-10">
+      <div className="glass-ultra glass-hover rounded-3xl px-6 sm:px-10 lg:px-16 py-14 sm:py-20 max-w-9xl mx-auto">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-20">
 
           <div className="w-full lg:w-3/6">
             <motion.div
@@ -26,21 +26,21 @@ const Hero: React.FC = () => {
             >
               <motion.h1
                 variants={container(0)}
-                className="pb-6 text-6xl sm:text-7xl lg:text-9xl font-thin text-red-600 text-center lg:text-left"
+                className="pb-4 sm:pb-6 text-5xl sm:text-6xl lg:text-9xl font-thin text-red-600 text-center lg:text-left leading-tight"
               >
                 Aditya Thakur
               </motion.h1>
 
               <motion.span
                 variants={container(0.3)}
-                className="mt-1 pb-8 bg-gradient-to-r from-red-700 via-orange-400 to-yellow-400 bg-clip-text text-3xl sm:text-4xl tracking-tight text-transparent text-center lg:text-left"
+                className="mt-1 pb-6 sm:pb-8 bg-gradient-to-r from-red-700 via-orange-400 to-yellow-400 bg-clip-text text-2xl sm:text-3xl lg:text-4xl tracking-tight text-transparent text-center lg:text-left"
               >
                 Frontend Developer
               </motion.span>
 
               <motion.p
                 variants={container(0.6)}
-                className="mt-4 max-w-4xl font-normal text-justify text-base leading-8 text-yellow-400 glass-ultra glass-hover rounded-2xl p-5"
+                className="mt-4 max-w-4xl font-normal text-left lg:text-justify text-sm sm:text-base leading-7 sm:leading-8 text-yellow-400 glass-ultra glass-hover rounded-2xl p-5"
               >
                 {HERO_CONTENT}
               </motion.p>
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
               }}
               src={profilePic}
               alt="Aditya Thakur"
-              className="w-72 sm:w-96 object-cover glass-ultra glass-hover rounded-3xl shadow-2xl"
+              className="w-64 sm:w-80 lg:w-96 object-cover glass-ultra glass-hover rounded-3xl shadow-2xl"
             />
           </div>
 
@@ -70,4 +70,3 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
-
