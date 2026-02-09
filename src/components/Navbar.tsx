@@ -86,7 +86,7 @@ const Navbar: React.FC = () => {
             <a href="https://github.com/Adityabt" target="_blank" className="flex items-center gap-3 text-lg text-neutral-200">
               <FaGithub /> GitHub
             </a>
-            <a href="https://instagram.com/yourusername" target="_blank" className="flex items-center gap-3 text-lg text-neutral-200">
+            <a href="https://www.instagram.com/adxtya.thakxr/" target="_blank" className="flex items-center gap-3 text-lg text-neutral-200">
               <FaInstagram /> Instagram
             </a>
             <a href="https://twitter.com/yourusername" target="_blank" className="flex items-center gap-3 text-lg text-neutral-200">
