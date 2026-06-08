@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>Aditya Thakur — Full-Stack Product Engineer</title>
+    <link rel="icon" type="image/png" href="/adityaThakurLogo2.png" />
+    <meta
+      name="description"
+      content="Full-stack product engineer building AI-powered digital products. React, Node.js, Python, computer vision, and modern web experiences."
+    />
+    <meta name="author" content="Aditya Thakur" />
+    <meta
+      name="keywords"
+      content="Aditya Thakur, Full Stack Engineer, AI Engineer, React, Node.js, Python, SRMIST, Portfolio"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Aditya Thakur — Full-Stack Product Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Full-stack product engineer building AI-powered digital products. React, Node.js, Python, computer vision, and modern web experiences."
+    />
+    <meta
+      property="og:url"
+      content="https://chatbot-integrated-portfolio.vercel.app"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Aditya Thakur — Full-Stack Product Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Full-stack product engineer building AI-powered digital products."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/adityaThakurLogo2.png" />
+
+    <!-- Font preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Theme: prevent flash on load -->
+    <script>
+      (function () {
+        try {
+          const stored = localStorage.getItem("portfolio-theme");
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          const theme = stored || (prefersDark ? "dark" : "light");
+          if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+            document.documentElement.classList.add("light");
+          } else {
+            document.documentElement.classList.remove("light");
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
