@@ -24,7 +24,7 @@ I'm building toward roles where I can own problems end to end — from architect
   github: "https://github.com/Adityabt",
   linkedin: "https://linkedin.com/in/adityabt/",
   portfolio: "https://chatbot-integrated-portfolio.vercel.app",
-  resume: "/resume/resume.pdf",
+  resume: "/resume.pdf",
 },
 
   education: [
